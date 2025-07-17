@@ -1,6 +1,7 @@
 import './App.css'
 import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage.jsx";
 
 function App() {
 
@@ -15,16 +16,17 @@ function App() {
             <Route element={<MainLayout />}>
                 <Route
                     path='/'
-                    element={<div>Home</div>}
+                    element={<HomePage/>}
                 />
                 <Route
                     path='/forbidden'
                     element={<div>forbidden !!! </div>}
                 />
                 <Route
-                path='/addquestion'
-                element={<div>add question</div>}
+                    path='/addquestion'
+                    element={<div>add question</div>}
                 />
+
             </Route>
 
         </Routes>

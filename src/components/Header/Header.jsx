@@ -1,11 +1,14 @@
 import Button from "../Button/Button.jsx";
 import cls from './Header.module.css'
 import ReactLogo from "../../assets/react.svg";
+import {useNavigate} from "react-router-dom";
 
 function Header() {
+
+    const navigate = useNavigate();
     return (
         <header className={cls.header}>
-            <p>
+            <p onClick={()=>navigate('/')}>
                 <img
                     src={ReactLogo}
                     alt='react logo'
@@ -14,7 +17,7 @@ function Header() {
             </p>
 
             <div className={cls.headerButtons}>
-                <Button >Add</Button>
+                <Button OnClick={()=>navigate('/addquestion')} >Add</Button>
                 <Button>Login</Button>
             </div>
         </header>
