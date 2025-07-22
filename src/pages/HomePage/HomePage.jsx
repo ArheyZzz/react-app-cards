@@ -1,7 +1,8 @@
-import cls from './HomePage.module.css'
 import QuestionCard from "../../components/QuestionCard/QuestionCard.jsx";
 import {API_URL} from "../../constans/index.js";
 import {useEffect, useState} from "react";
+import QuestionCardList
+    from "../../components/QuestionCardList/QuestionCardList.jsx";
 
 
 export default function HomePage() {
@@ -25,14 +26,13 @@ export default function HomePage() {
         getQuestions()
     }, [])
 
-    return (< >
-
-        {cards.map((card, index) => (<QuestionCard
-            key={index}
-            card={card}
-        />))}
-
-
-    </>);
+    return (
+        <QuestionCardList>
+            {cards.map((card, index) => (<QuestionCard
+                key={index}
+                card={card}
+            />))}
+        </QuestionCardList>
+    );
 }
 
