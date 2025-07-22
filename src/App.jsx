@@ -17,7 +17,7 @@ function App() {
             <Route element={<MainLayout />}>
                 <Route
                     path='/'
-                    element={<HomePage/>}
+                    element={<HomePage />}
                 />
                 <Route
                     path='/forbidden'
@@ -25,15 +25,15 @@ function App() {
                 />
                 <Route
                     path='/addquestion'
-                    element={<div>add question</div>}
+                    element={<div>add question </div>}
                 />
                 <Route
                     path='/question/:id'
                     element={<div>QUESTION PAGE</div>}
-                />          <Route
-                    path='*'
-                    element={<NotFoundPage/>}
-                />
+                /> <Route
+                path='*'
+                element={<NotFoundPage />}
+            />
 
             </Route>
 

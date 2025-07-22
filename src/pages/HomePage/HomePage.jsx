@@ -3,6 +3,7 @@ import {API_URL} from "../../constans/index.js";
 import {useEffect, useState} from "react";
 import QuestionCardList
     from "../../components/QuestionCardList/QuestionCardList.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
 
 
 export default function HomePage() {
@@ -28,6 +29,8 @@ export default function HomePage() {
 
     return (
         <QuestionCardList>
+            {cards.length === 0 &&  <Loader/>}
+
             {cards.map((card, index) => (<QuestionCard
                 key={index}
                 card={card}
