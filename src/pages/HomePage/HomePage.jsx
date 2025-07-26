@@ -1,11 +1,15 @@
+import './HomePage.module.css'
 import QuestionCard from "../../components/QuestionCard/QuestionCard.jsx";
 import {API_URL} from "../../constans/index.js";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import QuestionCardList
 	from "../../components/QuestionCardList/QuestionCardList.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import {useFetch} from "../../Hooks/useFetch.js";
 import SearchInput from "../../components/SearchInput/SearchInput.jsx";
+import Select from "../../components/Select/Select/Select.jsx";
+import ControlsContainer
+	from "../../components/ControlsContainer/ControlsContainer/ControlsContainer.jsx";
 
 
 export default function HomePage() {
@@ -13,11 +17,11 @@ export default function HomePage() {
 	const [cards, setCards] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
 
+
+
 	const onSearchChangeHandler = (e) => {
 		setSearchValue(e.target.value)
-		// console.log(e.target.value)
 	}
-
 
 	const [getQuestions, isLoading, error] = useFetch(async (url) => {
 		const response = await fetch(`${API_URL}/${url}`)
@@ -30,37 +34,50 @@ export default function HomePage() {
 		getQuestions('react')
 	}, [])
 
-	// useMemo(() => {
-	//    getQuestions('react')
-	// }, []);
+
+	const filteredCards = useMemo(() => {
+		return cards.filter(card =>
+			card.question.toLowerCase().includes(searchValue.trim().toLowerCase())
+		);
+	}, [cards, searchValue]);
 
 
 	return (
 		<>
-			<div className='controlsContainer'>
-				<SearchInput value={searchValue} onChange={onSearchChangeHandler}/>
-			</div>
+
+			<ControlsContainer>
+				<SearchInput
+					value={searchValue}
+					onChange={onSearchChangeHandler}
+				/>
+				<Select getQuestions={getQuestions}/>
+			</ControlsContainer>
+
 
 			<QuestionCardList>
 
 				{isLoading && <Loader />}
 
-				{error && <>
-					<span>{error}</span>
-					<button onClick={() => window.location.reload()}>Try again
-					</button>
-				</>}
+				{error && (
+					<>
+						<span>{error}</span>
+						<button onClick={() => window.location.reload()}>Try again
+						</button>
+					</>
+				)}
 
-				{!isLoading && !error && cards.length === 0 && (<>
-					<span>No questions found</span>
-					<button onClick={() => window.location.reload()}>Try again
-					</button>
-				</>)}
+				{!isLoading && !error && filteredCards.length === 0 && (
+					<>
+						<span className='noCardsInfo'>No cards found</span>
+					</>
+				)}
 
-				{cards.map((card, index) => (<QuestionCard
-					key={index}
-					card={card}
-				/>))}
+				{filteredCards.map((card, index) => (
+					<QuestionCard
+						key={index}
+						card={card}
+					/>
+				))}
 
 			</QuestionCardList>
 

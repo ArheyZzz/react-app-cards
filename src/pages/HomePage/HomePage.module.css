@@ -1,10 +1,4 @@
-.controlsContainer{
-    width: 100%;
-    max-width: 1200px;
+.noCardsInfo {
+    width: fit-content;
     margin: 0 auto;
-    padding: 15px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
 }

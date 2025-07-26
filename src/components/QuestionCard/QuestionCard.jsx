@@ -5,7 +5,7 @@ import Badge from "../Bage/Badge/Badge.jsx";
 
 function QuestionCard({card}) {
 
-	console.log(card)
+	// console.log(card)
 	const {
 		id,
 		question,
