@@ -28,3 +28,7 @@ button:disabled {
     color: #000;
     background-color: #ce7e1d;
 }
+
+.hidden {
+    display: none;
+}

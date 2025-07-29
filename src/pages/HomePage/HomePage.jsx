@@ -11,6 +11,7 @@ import Select from "../../components/Select/Select/Select.jsx";
 import ControlsContainer
 	from "../../components/ControlsContainer/ControlsContainer/ControlsContainer.jsx";
 import Button from "../../components/Button/Button.jsx";
+import CountSelect from "../../components/CountSelect/CountSelect.jsx";
 
 export const DEFAULT_PER_PAGE = 10;
 
@@ -20,6 +21,7 @@ export default function HomePage() {
 	const [cards, setCards] = useState({});
 	const [searchValue, setSearchValue] = useState("");
 	const [pageNumber, setPageNumber] = useState('1');
+	const [cardsPerPage, setCardsPerPage] = useState(10);
 
 
 	const onSearchChangeHandler = (e) => {
@@ -61,8 +63,8 @@ export default function HomePage() {
 
 
 	useEffect(() => {
-		getQuestions(`react?_page=${pageNumber}&_per_page=${DEFAULT_PER_PAGE}`)
-	}, [setSearchValue, pageNumber])
+		getQuestions(`react?_page=${pageNumber}&_per_page=${cardsPerPage}`)
+	}, [setSearchValue, pageNumber, cardsPerPage])
 
 	const controlsContainerRef = useRef(null);
 
@@ -78,6 +80,11 @@ export default function HomePage() {
 				<Select
 					pageNumber={pageNumber}
 					getQuestions={getQuestions}
+					cardsPerPage={cardsPerPage}
+				/>
+				<CountSelect
+					setCardsPerPage={setCardsPerPage}
+					cardsPerPage={cardsPerPage}
 				/>
 			</ControlsContainer>
 
@@ -113,15 +120,16 @@ export default function HomePage() {
 					className='paginationWrapper'
 					onClick={paginationHandler}
 				>
-					{pagination.map((value, index) => (
+					{pagination.length > 1 && pagination.map((value, index) => (
 						<Button
 							isActive={+pageNumber === +value}
 							key={index}
-						>{value}</Button>)
-					)}
+						>
+							{value}
+						</Button>
+					))}
 				</div>)
 			}
-
 
 		</>
 	);
