@@ -3,6 +3,7 @@ import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import QuestionPage from "./pages/QuestionPage/QuestionPage.jsx";
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
                 />
                 <Route
                     path='/question/:id'
-                    element={<div>QUESTION PAGE</div>}
+                    element={<QuestionPage/>}
                 /> <Route
                 path='*'
                 element={<NotFoundPage />}
