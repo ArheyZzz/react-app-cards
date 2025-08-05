@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import QuestionPage from "./pages/QuestionPage/QuestionPage.jsx";
+import AddQuestionPage from "./pages/AddQuestionPage/AddQuestionPage.jsx";
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
                 />
                 <Route
                     path='/addquestion'
-                    element={<div>add question </div>}
+                    element={<AddQuestionPage/>}
                 />
                 <Route
                     path='/question/:id'

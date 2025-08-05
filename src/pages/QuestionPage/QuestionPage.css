@@ -83,7 +83,7 @@
     input {
         width: 18px;
         height: 18px;
-        accent-color: #16C47f;
+        accent-color: var(--green-color);
     }
     label{
         font-size: 14px;

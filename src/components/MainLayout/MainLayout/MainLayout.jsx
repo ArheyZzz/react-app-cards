@@ -1,10 +1,12 @@
 import cls from './MainLayout.module.css'
 import {Outlet} from "react-router-dom";
 import Header from "../../Header/Header.jsx";
+import {ToastContainer} from "react-toastify";
 
 export default function MainLayout() {
     const currentYear = new Date().getFullYear()
     return (
+       <>
         <div className="cls.mainLayout">
 
             <Header />
@@ -19,6 +21,9 @@ export default function MainLayout() {
                 </footer>
             </div>
         </div>
+
+       <ToastContainer/>
+       </>
     )
 }
 
