@@ -5,6 +5,8 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import QuestionPage from "./pages/QuestionPage/QuestionPage.jsx";
 import AddQuestionPage from "./pages/AddQuestionPage/AddQuestionPage.jsx";
+import AddQuestionPageLazy
+    from "./pages/AddQuestionPage/AddQuestionPageLazy.jsx";
 
 function App() {
 
@@ -27,7 +29,7 @@ function App() {
                 />
                 <Route
                     path='/addquestion'
-                    element={<AddQuestionPage/>}
+                    element={<AddQuestionPageLazy/>}
                 />
                 <Route
                     path='/question/:id'

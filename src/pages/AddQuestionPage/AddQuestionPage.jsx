@@ -4,6 +4,7 @@ import {useActionState} from "react";
 import {toast} from "react-toastify";
 import {API_URL} from "../../constans/index.js";
 import {delayFn} from "../../helpers/delayFn.js";
+import Loader from "../../components/Loader/Loader.jsx";
 
 
 const createCardAction = async (_prevState, formData) => {
@@ -11,37 +12,45 @@ const createCardAction = async (_prevState, formData) => {
 		await delayFn()
 
 		const newQuestionData = Object.fromEntries(formData);
-		const resources =  newQuestionData.resources.trim()
+		const resources = newQuestionData.resources.trim()
 		const isClearForm = newQuestionData.clearForm //fomData.get("clearForm")
 
-		const respoce = await  fetch(`${API_URL}/react`, {
+		const respoce = await fetch(`${API_URL}/react`, {
 			method: "POST",
 			body: JSON.stringify({
 				question: newQuestionData.question,
 				answer: newQuestionData.answer,
 				description: newQuestionData.description,
-				resources: resources.lenght ? resources.split('.'): [],
+				resources: resources.lenght ? resources.split('.') : [],
 				level: +newQuestionData.level,
 				completed: false,
 				editDate: undefined,
 			}),
 		})
-			const question = respoce.json()
-			toast.success("New question successfully created!")
+		if (!respoce.ok) {
+			throw new Error(respoce.statusText);
+
+		}
+
+		const question = respoce.json()
+		toast.success("New question successfully created!")
 
 		return isClearForm ? {} : question;
 	} catch (error) {
 		toast.error(error.message)
+		return {}
 	}
 }
-
-export default function AddQuestionPage() {
+ function AddQuestionPage() {
 
 	const [formState, formAction, isPending] =
 		useActionState(createCardAction, {clearForm: true})
 
 
 	return (<>
+
+			{isPending && <Loader/>}
+
 			<h1 className='form-title'>Add new question</h1>
 			<div className="form-container">
 				<form
@@ -93,7 +102,6 @@ export default function AddQuestionPage() {
 							id='resourcesField'
 							cols="30"
 							rows="2"
-							required
 							placeholder='please enter resources seprated by commas '
 						></textarea>
 					</div>
@@ -135,3 +143,5 @@ export default function AddQuestionPage() {
 		</>
 	)
 }
+
+export default AddQuestionPage
