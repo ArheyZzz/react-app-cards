@@ -6,43 +6,50 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import QuestionPage from "./pages/QuestionPage/QuestionPage.jsx";
 import AddQuestionPage from "./pages/AddQuestionPage/AddQuestionPage.jsx";
 import AddQuestionPageLazy
-    from "./pages/AddQuestionPage/AddQuestionPageLazy.jsx";
+	from "./pages/AddQuestionPage/AddQuestionPageLazy.jsx";
+import EditQuestionPage
+	from "./components/EditQuestionPage/EditQuestionPage.jsx";
 
 function App() {
 
 
-    // return (
-    //     <MainLayout />
-    // )
+	// return (
+	//     <MainLayout />
+	// )
 
-    return <BrowserRouter>
-        <Routes>
+	return <BrowserRouter>
+		<Routes>
 
-            <Route element={<MainLayout />}>
-                <Route
-                    path='/'
-                    element={<HomePage />}
-                />
-                <Route
-                    path='/forbidden'
-                    element={<div>forbidden !!! </div>}
-                />
-                <Route
-                    path='/addquestion'
-                    element={<AddQuestionPageLazy/>}
-                />
-                <Route
-                    path='/question/:id'
-                    element={<QuestionPage/>}
-                /> <Route
-                path='*'
-                element={<NotFoundPage />}
-            />
+			<Route element={<MainLayout />}>
+				<Route
+					path='/'
+					element={<HomePage />}
+				/>
+				<Route
+					path='/forbidden'
+					element={<div>forbidden !!! </div>}
+				/>
+				<Route
+					path='/addquestion'
+					element={<AddQuestionPageLazy />}
+				/>
+				<Route
+					path='/question/:id'
+					element={<QuestionPage />}
+				/>
+				<Route
+					path='/editquestion/:id'
+					element={<EditQuestionPage />}
+				/>
+				<Route
+					path='*'
+					element={<NotFoundPage />}
+				/>
 
-            </Route>
+			</Route>
 
-        </Routes>
-    </BrowserRouter>
+		</Routes>
+	</BrowserRouter>
 }
 
 export default App

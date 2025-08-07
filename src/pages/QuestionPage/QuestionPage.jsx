@@ -2,7 +2,7 @@ import './QuestionPage.css'
 import {useNavigate, useParams} from "react-router-dom";
 import Badge from "../../components/Bage/Badge/Badge.jsx";
 import Button from "../../components/Button/Button.jsx";
-import {use, useEffect, useId, useState} from "react";
+import { useEffect, useId, useState} from "react";
 import {useFetch} from "../../Hooks/useFetch.js";
 import {API_URL} from "../../constans/index.js";
 import Loader, {SmallLoader} from "../../components/Loader/Loader.jsx";
@@ -40,7 +40,6 @@ export default function QuestionPage() {
 	useEffect(() => {
 		card !== null && setChecked(card.completed)
 	}, [card]);
-
 
 
 	const navigate = useNavigate();
@@ -96,7 +95,8 @@ export default function QuestionPage() {
 					</div>
 
 					<Button
-						onClick={() => navigate('/editquestion:id')}
+						onClick={() => console.log('!!!')}
+						OnClick={() => navigate(`/editquestion/${id}`)}
 						isChecked={isCardUpdating}
 					>Edit
 						question</Button>

@@ -7,7 +7,7 @@ export default function QuestionForm(props) {
 		formAction,
 		formState,
 		isPending,
-		submitBtnText
+		submitBtnText = 'Submit'
 	} = props
 
 // const defaultResources = formState.resources && Array.isArray(formState.resources)
@@ -19,6 +19,13 @@ export default function QuestionForm(props) {
 			method="post"
 			className="form-question"
 		>
+			<input
+				name="questionID"
+				defaultValue={formState.id}
+				hidden
+			/>
+
+
 			<div className='form-control'>
 				<label htmlFor="questionField">Question:</label>
 				<textarea

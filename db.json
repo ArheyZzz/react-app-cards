@@ -5,12 +5,9 @@
       "question": "Что такое React?",
       "answer": "React — это библиотека для создания пользовательских интерфейсов.",
       "description": "React — это JavaScript-библиотека, разработанная Facebook, которая используется для построения UI с компонентным подходом. React позволяет вам создавать пользовательские интерфейсы из отдельных частей, называемых компонентами.",
-      "resources": [
-        "https://react.dev",
-        "https://react.dev/reference/react"
-      ],
+      "resources": [],
       "level": 1,
-      "completed": true,
+      "completed": false,
       "editDate": "03.02.2025, 19:49"
     },
     {
@@ -565,6 +562,5 @@
       "level": 1,
       "completed": false
     }
-
   ]
 }
