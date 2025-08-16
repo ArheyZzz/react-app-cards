@@ -11,14 +11,13 @@ import {
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import QuestionPage from "./pages/QuestionPage/QuestionPage.jsx";
-import AddQuestionPage from "./pages/AddQuestionPage/AddQuestionPage.jsx";
 import AddQuestionPageLazy
 	from "./pages/AddQuestionPage/AddQuestionPageLazy.jsx";
-import EditQuestionPage
-	from "./components/EditQuestionPage/EditQuestionPage.jsx";
 import AuthProvider from "./auth/AuthProvider/AuthProvider.jsx";
 import {useAuth} from "./Hooks/isAuth.js";
 import ForbiddenPage from "./pages/ForbiddenPage/ForbiddenPage.jsx";
+import EditQuestionPageLazy
+	from "./components/EditQuestionPage/EditQuestionPageLazy.jsx";
 
 
 const ProtectedRoutes = () => {
@@ -71,7 +70,7 @@ function App() {
 							/>
 							<Route
 								path='/editquestion/:id'
-								element={<EditQuestionPage />}
+								element={<EditQuestionPageLazy />}
 							/>
 						</Route>
 

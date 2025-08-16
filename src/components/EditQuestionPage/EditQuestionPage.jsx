@@ -8,7 +8,7 @@ import Loader from "../Loader/Loader.jsx";
 import AddQuestionPage from "../../pages/AddQuestionPage/AddQuestionPage.jsx";
 import EditQuestion from "./EditQuestion.jsx";
 
-export default function EditQuestionPage() {
+ function EditQuestionPage() {
 
 	const {id} = useParams();
 	const [question, setQuestion] = useState(null);
@@ -24,6 +24,7 @@ export default function EditQuestionPage() {
 	}, [])
 
 
+
 	return (
 		<>
 			{isQuestionLoading && <Loader />}
@@ -31,3 +32,5 @@ export default function EditQuestionPage() {
 		</>
 	)
 }
+
+export default EditQuestionPage;
