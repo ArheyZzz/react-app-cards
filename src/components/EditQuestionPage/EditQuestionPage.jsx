@@ -23,7 +23,6 @@ export default function EditQuestionPage() {
 		fetchQuestion()
 	}, [])
 
-	console.log(question)
 
 	return (
 		<>

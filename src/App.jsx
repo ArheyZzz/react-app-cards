@@ -1,6 +1,13 @@
 import './App.css'
 import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx'
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {
+	BrowserRouter,
+	Navigate,
+	Outlet,
+	Route,
+	Routes,
+	useLocation
+} from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import QuestionPage from "./pages/QuestionPage/QuestionPage.jsx";
@@ -9,47 +16,72 @@ import AddQuestionPageLazy
 	from "./pages/AddQuestionPage/AddQuestionPageLazy.jsx";
 import EditQuestionPage
 	from "./components/EditQuestionPage/EditQuestionPage.jsx";
+import AuthProvider from "./auth/AuthProvider/AuthProvider.jsx";
+import {useAuth} from "./Hooks/isAuth.js";
+import ForbiddenPage from "./pages/ForbiddenPage/ForbiddenPage.jsx";
+
+
+const ProtectedRoutes = () => {
+	const {isAuth} = useAuth();
+	const location = useLocation();
+	return isAuth ? <Outlet />
+		:
+		<Navigate
+			state={{from: location.pathname}}
+			to='/forbidden'
+			replace={true}
+		/>
+}
+
 
 function App() {
-
 
 	// return (
 	//     <MainLayout />
 	// )
 
-	return <BrowserRouter>
-		<Routes>
+	return (
+		<AuthProvider>
 
-			<Route element={<MainLayout />}>
-				<Route
-					path='/'
-					element={<HomePage />}
-				/>
-				<Route
-					path='/forbidden'
-					element={<div>forbidden !!! </div>}
-				/>
-				<Route
-					path='/addquestion'
-					element={<AddQuestionPageLazy />}
-				/>
-				<Route
-					path='/question/:id'
-					element={<QuestionPage />}
-				/>
-				<Route
-					path='/editquestion/:id'
-					element={<EditQuestionPage />}
-				/>
-				<Route
-					path='*'
-					element={<NotFoundPage />}
-				/>
+			<BrowserRouter>
+				<Routes>
 
-			</Route>
+					<Route element={<MainLayout />}>
+						<Route
+							path='/'
+							element={<HomePage />}
+						/>
+						<Route
+							path='/forbidden'
+							element={<div><ForbiddenPage /></div>}
+						/>
+						<Route
+							path='/question/:id'
+							element={<QuestionPage />}
+						/>
+						<Route
+							path='*'
+							element={<NotFoundPage />}
+						/>
 
-		</Routes>
-	</BrowserRouter>
+						<Route element={<ProtectedRoutes />}>
+							<Route
+								path='/addquestion'
+								element={<AddQuestionPageLazy />}
+							/>
+							<Route
+								path='/editquestion/:id'
+								element={<EditQuestionPage />}
+							/>
+						</Route>
+
+
+					</Route>
+
+				</Routes>
+			</BrowserRouter>
+
+		</AuthProvider>)
 }
 
 export default App

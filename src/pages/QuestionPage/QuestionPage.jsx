@@ -2,16 +2,19 @@ import './QuestionPage.css'
 import {useNavigate, useParams} from "react-router-dom";
 import Badge from "../../components/Bage/Badge/Badge.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { useEffect, useId, useState} from "react";
+import {useEffect, useId, useState} from "react";
 import {useFetch} from "../../Hooks/useFetch.js";
 import {API_URL} from "../../constans/index.js";
 import Loader, {SmallLoader} from "../../components/Loader/Loader.jsx";
+import {useAuth} from "../../Hooks/isAuth.js";
 // import {useEffect, useState} from "react";
 
 export default function QuestionPage() {
 	const [card, setCard] = useState(null);
 	const [isChecked, setChecked] = useState(false);
 	const {id} = useParams();
+
+	const {isAuth} =useAuth();
 
 	const onCheckboxChangeHandler = () => {
 		setChecked(!isChecked);
@@ -94,12 +97,13 @@ export default function QuestionPage() {
 						{isCardUpdating && <SmallLoader />}
 					</div>
 
-					<Button
+					{isAuth && 					<Button
 						onClick={() => console.log('!!!')}
 						OnClick={() => navigate(`/editquestion/${id}`)}
 						isChecked={isCardUpdating}
 					>Edit
-						question</Button>
+						question
+					</Button>}
 
 					<Button
 						OnClick={() => navigate(`/`)}
