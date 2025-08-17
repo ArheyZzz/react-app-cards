@@ -1,0 +1,34 @@
+.form-title {
+    margin: 25px auto;
+    width: fit-content;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: var(--card-bg-color);
+    box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+
+.remove-question-button{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 8px;
+    right: 10px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: #D84040;
+}
+
+.remove-question-button:disabled{
+    opacity: 0.3;
+}

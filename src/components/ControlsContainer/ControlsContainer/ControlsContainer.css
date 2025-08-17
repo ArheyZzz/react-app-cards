@@ -1,0 +1,18 @@
+.controlsContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 576px) {
+    .controlsContainer {
+        flex-wrap: wrap-reverse;
+        gap: 10px 0;
+    }
+}
