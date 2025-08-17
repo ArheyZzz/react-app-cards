@@ -38,7 +38,27 @@ a:hover {
 body {
     background-color: var(--main-bg-color);
 }
+.dark-layout{
+    --main-bg-color: #23272F;
+    --text-color: #FFFF;
 
+    --btn-bg-color: #286371;
+    --btn-text-color: #57c3dc;
+
+    --card-bg-color: #343a46;
+    --green-color: #219679;
+}
+
+.light-layout{
+    --main-bg-color: #ffff;
+    --text-color: #000;
+
+    --btn-bg-color: #383b3f;
+    --btn-text-color: #fff;
+
+    --card-bg-color: #ebedf0;
+    --green-color: #219679;
+}
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -58,7 +78,7 @@ body {
         --main-bg-color: #23272F;
         --text-color: #FFFF;
 
-        --btn-bg-color: #16444f;
+        --btn-bg-color: #286371;
         --btn-text-color: #57c3dc;
 
         --card-bg-color: #343a46;

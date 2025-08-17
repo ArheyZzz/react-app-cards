@@ -4,6 +4,7 @@ import ReactLogo from "../../assets/react.svg";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../Hooks/isAuth.js";
 import {AUTH_STORAGE} from "../../constans/index.js";
+import ThemeToggler from "../../features/ThemeToggler/ThemeToggler.jsx";
 
 function Header() {
 
@@ -28,6 +29,7 @@ function Header() {
 			</p>
 
 			<div className={cls.headerButtons}>
+				<ThemeToggler/>
 				{isAuth &&
 					<Button OnClick={() => navigate('/addquestion')}>Add</Button>}
 				<Button OnClick={LoginHandler} isActive={!isAuth}>{isAuth ? 'Logout' : 'Login'}</Button>
